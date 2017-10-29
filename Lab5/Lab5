@@ -1,0 +1,47 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from astropy.io import fits
+import math
+import pickle
+import aplpy
+from photutils import daofind, aperture_photometry, CircularAperture
+
+############ Look at individual images ########
+
+"""
+dir_t = '/Volumes/TIM/Transits/'
+
+temporary = fits.getdata(dir_t + '')
+
+"""
+
+FWHM = 3
+aperture_r = 6
+thresh = 4
+
+####### before ~180 degree flip #########
+
+target_fits_b = np.loadtxt('/Volumes/TIM/Transits/transit_b', dtype = str)
+for i in range(0,target_fits.size):
+    image_b,hd1  = fits.getdata('/Volumes/TIM/Transits/'+target_fits_b[i], header = True)
+    image_b      = aplpy.FITSFigure('/Volumes/TIM/Transits/'+target_fits_b[i])
+    slice = 
+    sources_b    = daofind(image, fwhm = FWHM, threshold = thresh)
+    positions_b  = zip(sources['xcentroid'], sources['ycentroid'])
+    apertures_b  = CircularAperture(positions, r= aperture_r)
+    phot_table_b = aperture_photometry(image, apertures)
+
+
+
+
+######## after ~180 degree flip ########
+
+
+target_fits_a = np.loadtxt('/Volumes/TIM/Transits/transit_a', dtype = str)
+for i in range(0,target_fits.size):
+    image_a,hd2  = fits.getdata('/Volumes/TIM/Transits/'+target_fits_a[i], header = True)
+    image_a      = aplpy.FITSFigure('/Volumes/TIM/Transits/'+target_fits_a[i])
+    sources_a    = daofind(image, fwhm = FWHM, threshold = thresh)
+    positions_a  = zip(sources['xcentroid'], sources['ycentroid'])
+    apertures_a  = CircularAperture(positions, r= aperture_r)
+    phot_table_a = aperture_photometry(image, apertures)
